@@ -42,6 +42,32 @@ def get_roster(team_name, year):
     data = response.json()
     return data["roster_team_alltime"]["queryResults"]["row"]
 
+def get_player_statistics(player_id, position, year, team_id):
+    if (position != "PITCHER"):
+        url_player_info = "http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2017'&player_id='493316'"
+        url_player_info = url_player_info.replace("'2017'", "'" + year + "'")
+        url_player_info = url_player_info.replace("'493316'", "'" + player_id + "'")
+        response = requests.get(url_player_info)
+        data = response.json()
+        results = data["sport_hitting_tm"]["queryResults"]["row"]
+        if len(results) > 1 and len(results) < 5:
+            for team in results:
+                if team["team_id"] == team_id:
+                    return team
+        return results
+    else:
+        url_player_info = "http://lookup-service-prod.mlb.com/json/named.sport_pitching_tm.bam?league_list_id='mlb'&game_type='R'&season='2017'&player_id='592789'"
+        url_player_info = url_player_info.replace("'2017'", "'" + year + "'")
+        url_player_info = url_player_info.replace("'592789'", "'" + player_id + "'")
+        response = requests.get(url_player_info)
+        data = response.json()
+        results = data["sport_pitching_tm"]["queryResults"]["row"]
+        if len(results) > 1 and len(results) < 5:
+            for team in results:
+                if team["team_id"] == team_id:
+                    return team
+        return results
+
 
 ### DATABASE FUNCTIONS ###
 
@@ -49,7 +75,8 @@ def get_roster(team_name, year):
 def drop_tables(): 
     connection = sqlite3.connect('baseball.db')
     cursor = connection.cursor()
-    cursor.execute('DROP TABLE Players')
+    cursor.execute('DROP TABLE IF EXISTS Players')
+    cursor.execute('DROP TABLE IF EXISTS Statistics')
     connection.commit()
     connection.close()
 
@@ -58,7 +85,7 @@ def get_connection():
     cursor = connection.cursor()
     return connection, cursor
 
-def put_player_in_database(player_id, name, team_id, position, year):
+def add_player_to_Players_table(player_id, name, team_id, position, year):
     ret = get_connection()
     connection = ret[0]
     cursor = ret[1]
@@ -71,6 +98,34 @@ def put_player_in_database(player_id, name, team_id, position, year):
     connection.close()
     return None
 
+def add_player_to_Statistics_table(player_id, position, year, team_id):
+    ret = get_connection()
+    connection = ret[0]
+    cursor = ret[1]
+
+    stats = get_player_statistics(player_id, position, year, team_id)
+
+    if (position != "PITCHER"):
+        homeruns = stats["hr"]
+        ops  = stats["ops"]
+        hitter_strikeouts = stats["so"]
+    else:
+        era = stats["era"]
+        whip = stats["whip"]
+        pitcher_strikeouts = stats["so"]
+
+
+    cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, position TEXT, year INTEGER, team_id INTEGER, homeruns INTEGER, ops REAL, hitter_strikeouts INTEGER, era REAL, whip REAL, pitcher_strikeouts INTEGER)')
+
+    if (position != "PITCHER"):
+        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, homeruns, ops, hitter_strikeouts, None, None, None))
+    else:
+        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, None, None, None, None, None, None))
+
+    connection.commit()
+    connection.close()
+    return None
+
 def put_full_roster_in_database(team_name, year):
     resp = get_roster(team_name, year)
     for player in resp:
@@ -78,14 +133,14 @@ def put_full_roster_in_database(team_name, year):
         name = player["name_first_last"]
         team_id = player["team_id"]
         position = player["position_desig"]
-        put_player_in_database(player_id, name, team_id, position, int(year))
+        add_player_to_Players_table(player_id, name, team_id, position, int(year))
+        add_player_to_Statistics_table(player_id, position, year, team_id)
     return None
 
 def main():
+    drop_tables()
     for tup in list_of_teams_and_years:
         put_full_roster_in_database(tup[0], tup[1])
-
-    #db.connection_test()
 
 
     #algorithm:
