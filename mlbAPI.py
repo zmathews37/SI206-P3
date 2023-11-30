@@ -5,6 +5,7 @@ import requests
 import sqlite3
 
 urlbaseMLB = "http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2017'"
+list_of_teams_and_years = [("Chicago Cubs", "2016"), ("Cleveland Indians", "2016"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
 
 def get_api_full_info(url, input_headers, input_params):
     response = requests.get(url, headers=input_headers, params=input_params)
@@ -49,7 +50,6 @@ def drop_tables():
     connection = sqlite3.connect('baseball.db')
     cursor = connection.cursor()
     cursor.execute('DROP TABLE Players')
-    cursor.execute('DROP TABLE Teams')
     connection.commit()
     connection.close()
 
@@ -58,13 +58,14 @@ def get_connection():
     cursor = connection.cursor()
     return connection, cursor
 
-def put_player_in_database(name, team, position, player_id):
+def put_player_in_database(player_id, name, team_id, position, year):
     ret = get_connection()
     connection = ret[0]
     cursor = ret[1]
 
-    cursor.execute('CREATE TABLE IF NOT EXISTS Players (name TEXT, team TEXT, position TEXT, player_id)')
-    cursor.execute('INSERT INTO Players VALUES ("' + name + '", "' + team + '", "' + position + '", "' + player_id + '")')
+    #change this so that the key is player_id
+    cursor.execute('CREATE TABLE IF NOT EXISTS Players (player_id INTEGER PRIMARY KEY, name TEXT, team_id INTEGER, position TEXT, year INTEGER)') 
+    cursor.execute('INSERT INTO Players VALUES (?, ?, ?, ?, ?)', (player_id, name, team_id, position, year))
 
     connection.commit()
     connection.close()
@@ -73,15 +74,16 @@ def put_player_in_database(name, team, position, player_id):
 def put_full_roster_in_database(team_name, year):
     resp = get_roster(team_name, year)
     for player in resp:
-        name = player["name_first_last"]
-        team = player["team_code"]
-        position = player["position_txt"]
         player_id = player["player_id"]
-        put_player_in_database(name, team, position, player_id)
+        name = player["name_first_last"]
+        team_id = player["team_id"]
+        position = player["position_desig"]
+        put_player_in_database(player_id, name, team_id, position, int(year))
     return None
 
 def main():
-    put_full_roster_in_database("Houston Astros", "2017")
+    for tup in list_of_teams_and_years:
+        put_full_roster_in_database(tup[0], tup[1])
 
     #db.connection_test()
 
