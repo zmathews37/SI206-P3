@@ -120,7 +120,7 @@ def add_player_to_Statistics_table(player_id, position, year, team_id):
     if (position != "PITCHER"):
         cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, homeruns, ops, hitter_strikeouts, None, None, None))
     else:
-        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, None, None, None, None, None, None))
+        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, None, None, None, era, whip, pitcher_strikeouts))
 
     connection.commit()
     connection.close()
