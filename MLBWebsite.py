@@ -51,8 +51,8 @@ def put_scores_in_database(list_of_dates):
 
         #get the teams
         teams = soup.find_all("div", {"class": "TeamWrappersstyle__DesktopTeamWrapper-sc-uqs6qh-0 fdaoCu"})
-        awayTeam = teams[1].text
-        homeTeam = teams[0].text
+        awayTeam = teams[0].text
+        homeTeam = teams[1].text
 
         #print to database with table name "Scores" containing columns "Date", "HomeTeam", "HomeScore", "AwayTeam", "AwayScore"
         ret = get_connection()

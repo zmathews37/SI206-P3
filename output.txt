@@ -22,3 +22,369 @@ Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
 
 --- End Output for Plot 1 ---
 
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Cubs Runs Scored At Home Per Game: 2.4285714285714284
+Cubs Runs Scored On Road Per Game: 1.4285714285714286
+Cubs Runs Allowed At Home Per Game: 3.142857142857143
+Cubs Runs Allowed On Road Per Game: 0.7142857142857143
+
+Indians Runs Scored At Home Per Game: 0.7142857142857143
+Indians Runs Scored On Road Per Game: 3.142857142857143
+Indians Runs Allowed At Home Per Game: 1.4285714285714286
+Indians Runs Allowed On Road Per Game: 2.4285714285714284
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Astros Runs Scored At Home Per Game: 1.8571428571428572
+Astros Runs Scored On Road Per Game: 3.0
+Astros Runs Allowed At Home Per Game: 2.0
+Astros Runs Allowed On Road Per Game: 2.857142857142857
+
+Dodgers Runs Scored At Home Per Game: 2.857142857142857
+Dodgers Runs Scored On Road Per Game: 2.0
+Dodgers Runs Allowed At Home Per Game: 3.0
+Dodgers Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Dodgers Runs Scored At Home Per Game: 1.8571428571428572
+Dodgers Runs Scored On Road Per Game: 3.0
+Dodgers Runs Allowed At Home Per Game: 2.0
+Dodgers Runs Allowed On Road Per Game: 2.857142857142857
+
+Astros Runs Scored At Home Per Game: 2.857142857142857
+Astros Runs Scored On Road Per Game: 2.0
+Astros Runs Allowed At Home Per Game: 3.0
+Astros Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
