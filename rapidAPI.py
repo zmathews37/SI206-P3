@@ -1,5 +1,6 @@
-#Everything to do with the Rapid API calls
-#Uses rapid api for career stats and number of teams played for
+# Everything to do with the Rapid API calls
+# Uses rapid api for career stats and career games played
+# Make a weighted average for some positions
 
 import requests
 import sqlite3
@@ -95,7 +96,7 @@ def main():
         for player in roster:
             name = player["name_first_last"]
             player_id_db = int(player["player_id"] + team[1])
-            
+
             player_stats = get_career_stats(player["player_id"], player["position_desig"] == "PITCHER")
 
             if player["position_desig"] == "PITCHER":

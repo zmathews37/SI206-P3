@@ -5,6 +5,9 @@
 #player_id is unique for each player for each year
 #integer key is player_id+year
 
+#Gonna use join here in order to join all players from same team with their stats
+#take weighted average of stats based on games played
+
 import requests
 import sqlite3
 
@@ -124,14 +127,14 @@ def add_player_to_Statistics_table(player_id, position, year, team_id):
         games = stats["g"]
 
 
-    cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, position TEXT, year INTEGER, team_id INTEGER, games INTEGER, homeruns INTEGER, ops REAL, hitter_strikeouts INTEGER, era REAL, whip REAL, pitcher_strikeouts INTEGER)')
+    cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, year INTEGER, games INTEGER, homeruns INTEGER, ops REAL, hitter_strikeouts INTEGER, era REAL, whip REAL, pitcher_strikeouts INTEGER)')
 
     player_id = str(player_id) + str(year)
     player_id = int(player_id)
     if (position != "PITCHER"):
-        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, games, homeruns, ops, hitter_strikeouts, None, None, None))
+        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, year, games, homeruns, ops, hitter_strikeouts, None, None, None))
     else:
-        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, games, None, None, None, era, whip, pitcher_strikeouts))
+        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, year, games, None, None, None, era, whip, pitcher_strikeouts))
 
     connection.commit()
     connection.close()
