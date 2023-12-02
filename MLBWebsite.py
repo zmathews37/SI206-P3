@@ -60,6 +60,7 @@ def put_scores_in_database(list_of_dates):
         cursor = ret[1]
 
         #create if not exists
+        #key is not team name because there are multiple games with the same teams
         cursor.execute('CREATE TABLE IF NOT EXISTS Scores (CustomGameID INTEGER PRIMARY KEY, Year text, Game INTEGER, Date text, HomeTeam text, HomeScore INTEGER, AwayTeam text, AwayScore INTEGER)')
         cursor.execute('INSERT INTO Scores VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (customGameId, date[0:4], game, date, homeTeam, homeScore, awayTeam, awayScore))
         connection.commit()

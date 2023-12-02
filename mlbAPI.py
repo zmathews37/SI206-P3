@@ -40,6 +40,7 @@ def get_roster(team_name, year):
     
     response = requests.get(url_team_info)
     data = response.json()
+    
     return data["roster_team_alltime"]["queryResults"]["row"]
 
 def get_player_statistics(player_id, position, year, team_id):
@@ -79,6 +80,7 @@ def drop_tables():
     cursor.execute('DROP TABLE IF EXISTS Statistics')
     connection.commit()
     connection.close()
+    return None
 
 def get_connection():
     connection = sqlite3.connect('baseball.db')
@@ -109,18 +111,20 @@ def add_player_to_Statistics_table(player_id, position, year, team_id):
         homeruns = stats["hr"]
         ops  = stats["ops"]
         hitter_strikeouts = stats["so"]
+        games = stats["g"]
     else:
         era = stats["era"]
         whip = stats["whip"]
         pitcher_strikeouts = stats["so"]
+        games = stats["g"]
 
 
-    cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, position TEXT, year INTEGER, team_id INTEGER, homeruns INTEGER, ops REAL, hitter_strikeouts INTEGER, era REAL, whip REAL, pitcher_strikeouts INTEGER)')
+    cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, position TEXT, year INTEGER, team_id INTEGER, games INTEGER, homeruns INTEGER, ops REAL, hitter_strikeouts INTEGER, era REAL, whip REAL, pitcher_strikeouts INTEGER)')
 
     if (position != "PITCHER"):
-        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, homeruns, ops, hitter_strikeouts, None, None, None))
+        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, games, homeruns, ops, hitter_strikeouts, None, None, None))
     else:
-        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, None, None, None, era, whip, pitcher_strikeouts))
+        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, games, None, None, None, era, whip, pitcher_strikeouts))
 
     connection.commit()
     connection.close()
@@ -138,14 +142,14 @@ def put_full_roster_in_database(team_name, year):
     return None
 
 def main():
+    #algorithm:
+    #1. get team roster from MLB API and add to database
+    #2. for each player, get player info from MLB API and add to database
+
     drop_tables()
     for tup in list_of_teams_and_years:
         put_full_roster_in_database(tup[0], tup[1])
 
-
-    #algorithm:
-    #1. get team roster from MLB API and add to database
-    #2. for each player, get player info from MLB API and add to database
 
 if __name__ == "__main__":
     main()
