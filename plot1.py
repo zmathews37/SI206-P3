@@ -9,36 +9,6 @@ import numpy as np
 
 teams = ["Astros", "Dodgers"]
 
-def plot_margin_of_victory(connection, cursor):
-    cursor.execute('SELECT HomeScore, AwayScore FROM Scores')
-    scores = cursor.fetchall()
-
-    homeMargin = []
-    awayMargin = []
-
-    for score in scores:
-        if score[0] > score[1]:
-            homeMargin.append(score[0] - score[1])
-        else:
-            awayMargin.append(score[1] - score[0])
-
-    homeMarginAvg = np.mean(homeMargin)
-    awayMarginAvg = np.mean(awayMargin)
-
-    #create output file
-    f = open("output.txt", "w")
-    f.write("Home Margin Average: " + str(homeMarginAvg) + "\n")
-    f.write("Away Margin Average: " + str(awayMarginAvg) + "\n")
-    f.close()
-
-    #plot the margin of victory as side by side bar graph
-    plt.bar([1, 2], [homeMarginAvg, awayMarginAvg], tick_label=["Home", "Away"])
-    plt.title("Margin of Victory")
-    plt.xlabel("Home/Away")
-    plt.ylabel("Margin of Victory")
-    plt.show()
-    return None
-
 def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
     #for each team, get runs scored and runs allowed on home and away
     cursor.execute('SELECT HomeTeam, HomeScore, AwayTeam, AwayScore FROM Scores')
@@ -91,9 +61,6 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
         awayRunsAllowed = teams[team]["runsAllowedAway"]
         gamesPlayed = teams[team]["gamesPlayed"]
 
-        print(homeRunsScored)
-        print(gamesPlayed)
-
         runsScored = [homeRunsScored, awayRunsScored]
         runsAllowed = [homeRunsAllowed, awayRunsAllowed]
 
@@ -135,8 +102,6 @@ def main():
     ret = mlb.get_connection()
     connection = ret[0]
     cursor = ret[1]
-
-    #plot_margin_of_victory(connection, cursor) #unsure if we want to keep this
 
     #plot runs scored and runs allowed on same figure, different graph
     plot_runs_scored_versus_allowed(cursor, teams)
