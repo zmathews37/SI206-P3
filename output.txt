@@ -1,2 +1,134 @@
 Home Margin Average: 2.3333333333333335
 Away Margin Average: 3.25
+--- Output for Plot 1 ---
+
+Dodgers Runs Scored At Home Per Game: 1.8571428571428572
+Dodgers Runs Scored On Road Per Game: 3.0
+Dodgers Runs Allowed At Home Per Game: 2.0
+Dodgers Runs Allowed On Road Per Game: 2.857142857142857
+
+Astros Runs Scored At Home Per Game: 2.857142857142857
+Astros Runs Scored On Road Per Game: 2.0
+Astros Runs Allowed At Home Per Game: 3.0
+Astros Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Dodgers Runs Scored At Home Per Game: 1.8571428571428572
+Dodgers Runs Scored On Road Per Game: 3.0
+Dodgers Runs Allowed At Home Per Game: 2.0
+Dodgers Runs Allowed On Road Per Game: 2.857142857142857
+
+Astros Runs Scored At Home Per Game: 2.857142857142857
+Astros Runs Scored On Road Per Game: 2.0
+Astros Runs Allowed At Home Per Game: 3.0
+Astros Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Dodgers Runs Scored At Home Per Game: 1.8571428571428572
+Dodgers Runs Scored On Road Per Game: 3.0
+Dodgers Runs Allowed At Home Per Game: 2.0
+Dodgers Runs Allowed On Road Per Game: 2.857142857142857
+
+Astros Runs Scored At Home Per Game: 2.857142857142857
+Astros Runs Scored On Road Per Game: 2.0
+Astros Runs Allowed At Home Per Game: 3.0
+Astros Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Dodgers Runs Scored At Home Per Game: 1.8571428571428572
+Dodgers Runs Scored On Road Per Game: 3.0
+Dodgers Runs Allowed At Home Per Game: 2.0
+Dodgers Runs Allowed On Road Per Game: 2.857142857142857
+
+Astros Runs Scored At Home Per Game: 2.857142857142857
+Astros Runs Scored On Road Per Game: 2.0
+Astros Runs Allowed At Home Per Game: 3.0
+Astros Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Dodgers Runs Scored At Home Per Game: 1.8571428571428572
+Dodgers Runs Scored On Road Per Game: 3.0
+Dodgers Runs Allowed At Home Per Game: 2.0
+Dodgers Runs Allowed On Road Per Game: 2.857142857142857
+
+Astros Runs Scored At Home Per Game: 2.857142857142857
+Astros Runs Scored On Road Per Game: 2.0
+Astros Runs Allowed At Home Per Game: 3.0
+Astros Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Dodgers Runs Scored At Home Per Game: 1.8571428571428572
+Dodgers Runs Scored On Road Per Game: 3.0
+Dodgers Runs Allowed At Home Per Game: 2.0
+Dodgers Runs Allowed On Road Per Game: 2.857142857142857
+
+Astros Runs Scored At Home Per Game: 2.857142857142857
+Astros Runs Scored On Road Per Game: 2.0
+Astros Runs Allowed At Home Per Game: 3.0
+Astros Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Giants Runs Scored At Home Per Game: 2.5
+Giants Runs Scored On Road Per Game: 1.5
+Giants Runs Allowed At Home Per Game: 0.75
+Giants Runs Allowed On Road Per Game: 0.75
+
+Tigers Runs Scored At Home Per Game: 0.75
+Tigers Runs Scored On Road Per Game: 0.75
+Tigers Runs Allowed At Home Per Game: 1.5
+Tigers Runs Allowed On Road Per Game: 2.5
+
+Dodgers Runs Scored At Home Per Game: 1.8571428571428572
+Dodgers Runs Scored On Road Per Game: 3.0
+Dodgers Runs Allowed At Home Per Game: 2.0
+Dodgers Runs Allowed On Road Per Game: 2.857142857142857
+
+Astros Runs Scored At Home Per Game: 2.857142857142857
+Astros Runs Scored On Road Per Game: 2.0
+Astros Runs Allowed At Home Per Game: 3.0
+Astros Runs Allowed On Road Per Game: 1.8571428571428572
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 1 ---
+
+Giants Runs Scored At Home Per Game: 5.0
+Giants Runs Scored On Road Per Game: 3.0
+Giants Runs Allowed At Home Per Game: 1.5
+Giants Runs Allowed On Road Per Game: 1.5
+
+Tigers Runs Scored At Home Per Game: 1.5
+Tigers Runs Scored On Road Per Game: 1.5
+Tigers Runs Allowed At Home Per Game: 3.0
+Tigers Runs Allowed On Road Per Game: 5.0
+
+Dodgers Runs Scored At Home Per Game: 3.25
+Dodgers Runs Scored On Road Per Game: 7.0
+Dodgers Runs Allowed At Home Per Game: 3.5
+Dodgers Runs Allowed On Road Per Game: 6.666666666666667
+
+Astros Runs Scored At Home Per Game: 6.666666666666667
+Astros Runs Scored On Road Per Game: 3.5
+Astros Runs Allowed At Home Per Game: 7.0
+Astros Runs Allowed On Road Per Game: 3.25
+
+--- End Output for Plot 1 ---
+

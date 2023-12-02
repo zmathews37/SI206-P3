@@ -1,11 +1,15 @@
 #Call API to get team roster and add each player into database table called Players
 #For each of these players, call API to get player stats and add to database table called Statistics
 
+#important info:
+#player_id is unique for each player for each year
+#integer key is player_id+year
+
 import requests
 import sqlite3
 
 urlbaseMLB = "http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2017'"
-list_of_teams_and_years = [("Chicago Cubs", "2016"), ("Cleveland Indians", "2016"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
+list_of_teams_and_years = [("San Francisco Giants", "2012"), ("Detroit Tigers", "2012"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
 
 def get_api_full_info(url, input_headers, input_params):
     response = requests.get(url, headers=input_headers, params=input_params)
@@ -25,7 +29,6 @@ def handle_team_info():
     print_team_info("teams.txt", response_team_info)
     return None
 
-#get team info for 2017 season astros
 def get_roster(team_name, year):
     team_info = get_api_full_info(urlbaseMLB, None, None)
     teams = team_info["team_all_season"]["queryResults"]["row"]
@@ -93,6 +96,8 @@ def add_player_to_Players_table(player_id, name, team_id, position, year):
     cursor = ret[1]
 
     #change this so that the key is player_id
+    player_id = str(player_id) + str(year)
+    player_id = int(player_id)
     cursor.execute('CREATE TABLE IF NOT EXISTS Players (player_id INTEGER PRIMARY KEY, name TEXT, team_id INTEGER, position TEXT, year INTEGER)') 
     cursor.execute('INSERT INTO Players VALUES (?, ?, ?, ?, ?)', (player_id, name, team_id, position, year))
 
@@ -121,6 +126,8 @@ def add_player_to_Statistics_table(player_id, position, year, team_id):
 
     cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, position TEXT, year INTEGER, team_id INTEGER, games INTEGER, homeruns INTEGER, ops REAL, hitter_strikeouts INTEGER, era REAL, whip REAL, pitcher_strikeouts INTEGER)')
 
+    player_id = str(player_id) + str(year)
+    player_id = int(player_id)
     if (position != "PITCHER"):
         cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, position, year, team_id, games, homeruns, ops, hitter_strikeouts, None, None, None))
     else:

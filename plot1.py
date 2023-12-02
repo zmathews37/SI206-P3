@@ -5,9 +5,8 @@
 
 import MLBWebsite as mlb
 import matplotlib.pyplot as plt
-import numpy as np
 
-teams = ["Astros", "Dodgers"]
+teams_to_add = ["Astros", "Dodgers", "Giants", "Tigers"]
 
 def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
     #for each team, get runs scored and runs allowed on home and away
@@ -22,22 +21,19 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
     for score in scores:
         if score[0] in teams_to_plot and score[0] not in teams:
             #home runs, home allowed, away runs, away allowed, games played
-            teams[score[0]] = {"runsScoredHome": 0, "runsAllowedHome": 0, "runsScoredAway": 0, "runsAllowedAway": 0, "gamesPlayed": 0}
+            teams[score[0]] = {"runsScoredHome": 0, "runsAllowedHome": 0, "runsScoredAway": 0, "runsAllowedAway": 0, "gamesPlayedHome": 0, "gamesPlayedAway": 0}
 
 
     for score in scores:
-        print(score)
         if score[0] in teams:
             #home runs, home allowed, away runs, away allowed, games played
             teams[score[0]]["runsScoredHome"] += score[1]
             teams[score[0]]["runsAllowedHome"] += score[3]
-            teams[score[0]]["gamesPlayed"] += 1
+            teams[score[0]]["gamesPlayedHome"] += 1
         if score[2] in teams:
             teams[score[2]]["runsScoredAway"] += score[3]
             teams[score[2]]["runsAllowedAway"] += score[1]
-            teams[score[2]]["gamesPlayed"] += 1
-
-    print(teams)
+            teams[score[2]]["gamesPlayedAway"] += 1
 
     #create figure to hold all team graphs
     #for each team make 2 bar charts on the same subplot
@@ -59,13 +55,13 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
         homeRunsAllowed = teams[team]["runsAllowedHome"]
         awayRunsScored = teams[team]["runsScoredAway"]
         awayRunsAllowed = teams[team]["runsAllowedAway"]
-        gamesPlayed = teams[team]["gamesPlayed"]
+        gamesPlayedHome = teams[team]["gamesPlayedHome"]
+        gamesPlayedAway = teams[team]["gamesPlayedAway"]
 
-        runsScored = [homeRunsScored, awayRunsScored]
-        runsAllowed = [homeRunsAllowed, awayRunsAllowed]
+        runsScored = [homeRunsScored / gamesPlayedHome, awayRunsScored / gamesPlayedAway]
+        runsAllowed = [homeRunsAllowed / gamesPlayedHome, awayRunsAllowed / gamesPlayedAway]
 
-        runsScored = [x / gamesPlayed for x in runsScored]
-        runsAllowed = [x / gamesPlayed for x in runsAllowed]
+
 
         axs[i, 0].bar([1, 2], runsScored, tick_label=["Home", "Away"])
         axs[i, 0].set_title(team + " Runs Scored")
@@ -104,7 +100,7 @@ def main():
     cursor = ret[1]
 
     #plot runs scored and runs allowed on same figure, different graph
-    plot_runs_scored_versus_allowed(cursor, teams)
+    plot_runs_scored_versus_allowed(cursor, teams_to_add)
     connection.close()
 
 

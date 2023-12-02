@@ -1,4 +1,0 @@
-Home Wins: 6
-Away Wins: 8
-Home Margin: 2.3333333333333335
-Away Margin: 3.25

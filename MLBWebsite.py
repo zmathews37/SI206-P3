@@ -4,8 +4,19 @@ from bs4 import BeautifulSoup
 import requests
 import sqlite3
 
-dates2016WS = ["2016-10-25", "2016-10-26", "2016-10-28", "2016-10-29", "2016-10-30", "2016-11-01", "2016-11-02"]
-dates2017WS = ["2017-10-24", "2017-10-25", "2017-10-27", "2017-10-28", "2017-10-29", "2017-10-31", "2017-11-01"]
+# dates2012ALDS = ["2012-10-06", "2012-10-07", "2012-10-09", "2012-10-10", "2012-10-11"]
+# dates2012ALCS = ["2012-10-13", "2012-10-14", "2012-10-16", "2012-10-17", "2012-10-18"]
+# dates2012NLDS = ["2012-10-06", "2012-10-07", "2012-10-09", "2012-10-10", "2012-10-11"]
+# dates2012NLCS = ["2012-10-14", "2012-10-15", "2012-10-17", "2012-10-18", "2012-10-19"]
+dates2012WS   = ["2012-10-24", "2012-10-25", "2012-10-27", "2012-10-28"]
+# dates2017ALDS = ["2017-10-05", "2017-10-06", "2017-10-08", "2017-10-09", "2017-10-11", "2017-10-12"]
+# dates2017ALCS = ["2017-10-13", "2017-10-14", "2017-10-16", "2017-10-17", "2017-10-18", "2017-10-20", "2017-10-21"]
+# dates2017NLDS = ["2017-10-06", "2017-10-07", "2017-10-09", "2017-10-10", "2017-10-11", "2017-10-12"]
+# dates2017NLCS = ["2017-10-14", "2017-10-15", "2017-10-17", "2017-10-18", "2017-10-19", "2017-10-21", "2017-10-22"]
+dates2017WS   = ["2017-10-24", "2017-10-25", "2017-10-27", "2017-10-28", "2017-10-29", "2017-10-31", "2017-11-01"]
+#dates_to_scrape = dates2012ALDS + dates2012ALCS + dates2012NLDS + dates2012NLCS + dates2012WS + dates2017ALDS + dates2017ALCS + dates2017NLDS + dates2017NLCS + dates2017WS
+#dates_to_scrape = [dates2012ALDS, dates2012WS, dates2017WS]
+dates_to_scrape = [dates2012WS, dates2017WS]
 
 #create global variable for customGameId
 customGameId = 1
@@ -74,8 +85,9 @@ def put_scores_in_database(list_of_dates):
     
 def main():
     drop_tables()
-    put_scores_in_database(dates2016WS)
-    put_scores_in_database(dates2017WS)
+
+    for date in dates_to_scrape:
+        put_scores_in_database(date)
 
 if __name__ == "__main__":
     main()

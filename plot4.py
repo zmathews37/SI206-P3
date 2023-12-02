@@ -22,6 +22,7 @@ def plot_margin_of_victory(connection, cursor):
     f = open("output.txt", "w")
     f.write("Home Margin Average: " + str(homeMarginAvg) + "\n")
     f.write("Away Margin Average: " + str(awayMarginAvg) + "\n")
+    f.write("\n")
     f.close()
 
     #plot the margin of victory as side by side bar graph
