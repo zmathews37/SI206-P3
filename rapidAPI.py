@@ -51,7 +51,6 @@ def get_career_stats(player_id, pitcher):
 
 
 ### MISCELLANEOUS ###
-
 def store_teams_dict():
     d = {}
     info = requests.get(urlSeason, headers=headers, params=querystringSeason).json()
@@ -60,16 +59,6 @@ def store_teams_dict():
     for team in teams:
         d[team["name_display_full"]] = team["team_id"]
     return d
-
-
-#only use when needed!!!
-def drop_tables(): 
-    connection = sqlite3.connect('baseball.db')
-    cursor = connection.cursor()
-    cursor.execute('DROP TABLE IF EXISTS CareerStats')
-    connection.commit()
-    connection.close()
-    return None
 
 def get_connection():
     connection = sqlite3.connect('baseball.db')

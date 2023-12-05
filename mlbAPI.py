@@ -62,17 +62,6 @@ def get_player_statistics(player_id, position, year, team_id):
 
 
 ### DATABASE FUNCTIONS ###
-
-#only use when needed!!!
-def drop_tables(): 
-    connection = sqlite3.connect('baseball.db')
-    cursor = connection.cursor()
-    cursor.execute('DROP TABLE IF EXISTS Players')
-    cursor.execute('DROP TABLE IF EXISTS Statistics')
-    connection.commit()
-    connection.close()
-    return None
-
 def get_connection():
     connection = sqlite3.connect('baseball.db')
     cursor = connection.cursor()

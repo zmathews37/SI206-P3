@@ -6,16 +6,7 @@ import sqlite3
 import driver
 
 series_to_scrape = driver.series_to_scrape
-
 num_games_to_scrape = driver.num_games_to_scrape
-
-def drop_tables():
-    connection = sqlite3.connect('baseball.db')
-    cursor = connection.cursor()
-    cursor.execute('DROP TABLE IF EXISTS Scores')
-    connection.commit()
-    connection.close()
-    return None
 
 def get_connection():
     connection = sqlite3.connect('baseball.db')
