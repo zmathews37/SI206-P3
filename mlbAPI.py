@@ -77,14 +77,14 @@ def get_connection():
     cursor = connection.cursor()
     return connection, cursor
 
-def add_player_to_Players_table(player_id, name, team_id, position, year):
+def add_player_to_Players_table(player_id, name, team_name, position, year):
     ret = get_connection()
     connection = ret[0]
     cursor = ret[1]
 
     player_id = str(player_id) + str(year)
     player_id = int(player_id) 
-    cursor.execute('INSERT INTO Players VALUES (?, ?, ?, ?, ?)', (player_id, name, team_id, position, year))
+    cursor.execute('INSERT INTO Players VALUES (?, ?, ?, ?, ?)', (player_id, name, team_name, year, position))
 
     connection.commit()
     connection.close()
@@ -140,7 +140,7 @@ def put_full_roster_in_database(team_name, year, iterator):
         
         #new player, add to database
         iterator += 1
-        add_player_to_Players_table(player_id, name, team_id, position, int(year))
+        add_player_to_Players_table(player_id, name, team_name, position, int(year))
         add_player_to_Statistics_table(player_id, position, year, team_id)
 
         #if we have added enough players, stop
@@ -160,7 +160,7 @@ def main():
     connection = ret[0]
     cursor = ret[1]
 
-    cursor.execute('CREATE TABLE IF NOT EXISTS Players (player_id INTEGER PRIMARY KEY, name TEXT, team_id INTEGER, position TEXT, year INTEGER)')
+    cursor.execute('CREATE TABLE IF NOT EXISTS Players (player_id INTEGER PRIMARY KEY, name TEXT, team_name text, year INTEGER, position TEXT)')
     cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, year INTEGER, at_bats INTEGER, ops REAL, homeruns INTEGER, innings_pitched REAL, era REAL, whip REAL)')
     connection.commit()
     connection.close()

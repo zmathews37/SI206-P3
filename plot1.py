@@ -48,7 +48,7 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
 
     #scale the figure to fit all the graphs
     fig, axs = plt.subplots(numberOfTeams, 2, figsize=(10, 10))
-    fig.suptitle("Runs Score and Allowed Per Game Between Home and Away")
+    fig.suptitle("Runs Scored and Allowed Per Game Between Home and Away")
     fig.tight_layout(pad=3.0)
 
     i = 0
@@ -69,17 +69,28 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
         axs[i, 0].set_title(team + " Runs Scored")
         axs[i, 0].set_ylabel("Runs Scored Per Game")
 
+        #set y axis max value to be slitghly above the highest value
+        maxVal = max(runsScored)
+        axs[i, 0].set_ylim([0, maxVal + 1])
+
+
+        #put the values right at the top
         for j in range(2):
             height = runsScored[j]
-            axs[i, 0].text(j + 1, height + 0.05, str(round(height, 2)), ha="center", va="bottom")
+            axs[i, 0].text(j + 1, height, str(round(height, 2)), ha="center", va="bottom")
+            
 
         axs[i, 1].bar([1, 2], runsAllowed, tick_label=["Home", "Away"])
         axs[i, 1].set_title(team + " Runs Allowed")
         axs[i, 1].set_ylabel("Runs Allowed Per Game")
 
+        #set y axis max value to be slitghly above the highest value
+        maxVal = max(runsAllowed)
+        axs[i, 1].set_ylim([0, maxVal + 1])
+
         for j in range(2):
             height = runsAllowed[j]
-            axs[i, 1].text(j + 1, height + 0.05, str(round(height, 2)), ha="center", va="bottom")
+            axs[i, 1].text(j + 1, height, str(round(height, 2)), ha="center", va="bottom")
 
         i += 1
         
