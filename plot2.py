@@ -1,2 +1,2 @@
 # get career statistics for a player
-# get the difference in their career statistics vs world series winning team
+# graph the career statistics for a player vs number of teams played for

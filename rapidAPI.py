@@ -1,6 +1,5 @@
 # Everything to do with the Rapid API calls
-# Uses rapid api for career stats and career games played
-# Make a weighted average for some positions
+# Uses rapid api for career stats and teams played for
 
 import requests
 import sqlite3
@@ -20,7 +19,9 @@ headers = {
 	"X-RapidAPI-Host": "mlb-data.p.rapidapi.com"
 }
 
-list_of_teams_and_years = [("San Francisco Giants", "2012"), ("Detroit Tigers", "2012"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
+# list_of_teams_and_years = [("San Francisco Giants", "2012"), ("Detroit Tigers", "2012"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
+list_of_teams_and_years = [("Houston Astros", "2017")]
+players_to_add = 24
 
 ### FUNCTIONS ###
 
@@ -75,10 +76,11 @@ def get_connection():
     cursor = connection.cursor()
     return connection, cursor
 
-def put_player_in_career_stats_table(player_id, player_name, ops, homerun, era, whip):
-    connection, cursor = get_connection()
-    cursor.execute('CREATE TABLE IF NOT EXISTS CareerStats (PlayerID INTEGER PRIMARY KEY, Name text, OPS REAL, Homerun INTEGER, ERA REAL, WHIP REAL)')
-    cursor.execute('INSERT INTO CareerStats VALUES (?, ?, ?, ?, ?, ?)', (player_id, player_name, ops, homerun, era, whip))
+def put_player_in_career_stats_table(player_id, player_name, ops, homerun, era, whip, teams_played_for):
+    ret = get_connection()
+    connection = ret[0]
+    cursor = ret[1]
+    cursor.execute('INSERT INTO CareerStats VALUES (?, ?, ?, ?, ?, ?, ?)', (player_id, player_name, ops, homerun, era, whip, teams_played_for))
     connection.commit()
     connection.close()
     return None
@@ -88,25 +90,50 @@ def main():
     #1. get a couple players from rapid API
     #2. add career stats to database
     #3. add number of teams played for to database
-    drop_tables()
+
+    connection, cursor = get_connection()
+    cursor.execute('CREATE TABLE IF NOT EXISTS CareerStats (PlayerID INTEGER PRIMARY KEY, Name text, OPS REAL, Homerun INTEGER, ERA REAL, WHIP REAL, teams_played_for INTEGER)')
+    connection.commit()
+    connection.close()
+    
     teamsDict = store_teams_dict()
+    iterator = 0
 
     for team in list_of_teams_and_years:
         roster = get_roster(team[0], team[1], teamsDict)
         for player in roster:
             name = player["name_first_last"]
-            player_id_db = int(player["player_id"] + team[1])
+            player_id_db = int(player["player_id"])
+
+            #if player is already in database, skip
+            ret = get_connection()
+            connection = ret[0]
+            cursor = ret[1]
+            cursor.execute('SELECT * FROM CareerStats WHERE PlayerID=?', (player_id_db,))
+            results = cursor.fetchall()
+            connection.close()
+
+            if len(results) > 0:
+                continue
 
             player_stats = get_career_stats(player["player_id"], player["position_desig"] == "PITCHER")
+            teams_played_for = player_stats["team_count"]
 
             if player["position_desig"] == "PITCHER":
                 era = player_stats["era"]
                 whip = player_stats["whip"]
-                put_player_in_career_stats_table(player_id_db, name, None, None, era, whip)
+                put_player_in_career_stats_table(player_id_db, name, None, None, era, whip, teams_played_for)
             else:
                 ops = player_stats["ops"]
                 homerun = player_stats["hr"]
-                put_player_in_career_stats_table(player_id_db, name, ops, homerun, None, None)
+                put_player_in_career_stats_table(player_id_db, name, ops, homerun, None, None, teams_played_for)
+
+            iterator += 1
+
+            if iterator == players_to_add:
+                return None
+
+    print("All Career Stats Added")
 
 
 if __name__ == "__main__":
