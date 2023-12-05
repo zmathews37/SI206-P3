@@ -1,3 +1,5 @@
+import re
+
 #for API calls
 players_to_add = 10
 list_of_teams_and_years = [("San Francisco Giants", "2010"), ("St. Louis Cardinals", "2011"), ("Boston Red Sox", "2012"), ("Houston Astros", "2017")]
@@ -24,3 +26,16 @@ dates2022WS   = ["2022-10-28", "2022-10-29", "2022-11-01", "2022-11-02", "2022-1
 
 series_to_scrape = [dates2005WS, dates2006WS, dates2007WS, dates2008WS, dates2009WS, dates2010WS, dates2011WS, dates2012WS, dates2013WS, dates2014WS, dates2015WS, dates2016WS, dates2017WS, dates2018WS, dates2019WS, dates2020WS, dates2021WS, dates2022WS] 
 num_games_to_scrape = 240
+
+def get_teams_to_plot():
+    teams_to_plot = []
+    for tup in list_of_teams_and_years:
+        #use regex to get team name last word
+        if "Red Sox" in tup[0] or "Blue Jays" in tup[0] or "White Sox" in tup[0]: #double names
+            #get last two words
+            name = re.findall(r'\w+\s\w+$', tup[0])[0]
+        else:    
+            name = re.findall(r'\w+$', tup[0])[0]
+        teams_to_plot.append(name)
+
+    return teams_to_plot

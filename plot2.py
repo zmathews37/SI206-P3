@@ -80,6 +80,25 @@ def main():
     axs[1].set_title("Weighted Average of OPS")
     axs[1].set_xlabel("positions")
     axs[1].set_ylabel("OPS")
+
+    #print the data
+    #output to file
+    f = open("output.txt", "a")
+    f.write("--- Output for Plot 2 ---\n\n")
+
+    f.write("Weighted Average of Home Runs and OPS for Each Position\n\n")
+    f.write("Position\tHome Runs\t")
+    next = " "*28 + "OPS\n"
+    f.write(next)
+    for position in positions:
+        #round
+        stats_dict[position]["homeruns"] = round(stats_dict[position]["homeruns"], 2)
+        stats_dict[position]["ops"] = round(stats_dict[position]["ops"], 3)
+        f.write(position + "\t" + " "*8 + str(stats_dict[position]["homeruns"]) + " homeruns per 1000 at bats\t" + " "*8 + str(stats_dict[position]["ops"]) + "\n")
+    f.write("\n")
+    f.write("--- End Output for Plot 2 ---\n\n")
+    f.close()
+
     plt.show()
 
     connection.close()

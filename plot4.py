@@ -2,7 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import MLBWebsite as mlbWeb
 
-def plot_margin_of_victory(connection, cursor):
+def main():
+    connection, cursor = mlbWeb.get_connection()
+
     cursor.execute('SELECT HomeScore, AwayScore FROM Scores')
     scores = cursor.fetchall()
 
@@ -30,12 +32,9 @@ def plot_margin_of_victory(connection, cursor):
     plt.title("Margin of Victory")
     plt.ylabel("Average Margin of Victory (runs)")
     plt.show()
-    return None
 
-def main():
-    connection, cursor = mlbWeb.get_connection()
-    plot_margin_of_victory(connection, cursor)
     connection.close()
+
     return None
 
 if __name__ == "__main__":

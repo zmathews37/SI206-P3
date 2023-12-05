@@ -97,7 +97,40 @@ def main():
     ax[1, 1].set_title("WHIP")
     ax[1, 1].set_ylabel("WHIP")
 
+    #print the data
+    #connect output file
+    f = open("output.txt", "a")
+    f.write("--- Output for Plot 3 ---\n\n")
+    f.write("Comparing the weighted averages of World Series teams\n\n")
+
+    f.write("OPS\n")
+    f.write(matchups[0][0] + ": " + str(round(data_list[0][0], 3)) + "\n")
+    f.write(matchups[0][1] + ": " + str(round(data_list[1][0], 3)) + "\n")
+    f.write(matchups[1][0] + ": " + str(round(data_list[2][0], 3)) + "\n")
+    f.write(matchups[1][1] + ": " + str(round(data_list[3][0], 3)) + "\n\n")
+
+    f.write("Home Runs\n")
+    f.write(matchups[0][0] + ": " + str(data_list[0][1]) + "\n")    
+    f.write(matchups[0][1] + ": " + str(data_list[1][1]) + "\n")
+    f.write(matchups[1][0] + ": " + str(data_list[2][1]) + "\n")
+    f.write(matchups[1][1] + ": " + str(data_list[3][1]) + "\n\n")
+
+    f.write("ERA\n")
+    f.write(matchups[0][0] + ": " + str(round(data_list[0][2], 2)) + "\n")
+    f.write(matchups[0][1] + ": " + str(round(data_list[1][2], 2)) + "\n")
+    f.write(matchups[1][0] + ": " + str(round(data_list[2][2], 2)) + "\n")
+    f.write(matchups[1][1] + ": " + str(round(data_list[3][2], 2)) + "\n\n")
+
+    f.write("WHIP\n")
+    f.write(matchups[0][0] + ": " + str(round(data_list[0][3], 2)) + "\n")
+    f.write(matchups[0][1] + ": " + str(round(data_list[1][3], 2)) + "\n")
+    f.write(matchups[1][0] + ": " + str(round(data_list[2][3], 2)) + "\n")
+    f.write(matchups[1][1] + ": " + str(round(data_list[3][3], 2)) + "\n\n")
+    f.write("--- End Output for Plot 3 ---\n\n")
+    f.close()
+
     plt.show()
+
 
 
 

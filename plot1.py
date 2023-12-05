@@ -8,22 +8,13 @@
 import MLBWebsite as mlbWeb
 import matplotlib.pyplot as plt
 import driver
-import re
 
 list_of_teams_and_years = driver.list_of_teams_and_years
 
 def main():
     connection, cursor = mlbWeb.get_connection()
 
-    teams_to_plot = []
-    for tup in list_of_teams_and_years:
-        #use regex to get team name last word
-        if "Red Sox" in tup[0] or "Blue Jays" in tup[0] or "White Sox" in tup[0]: #double names
-            #get last two words
-            name = re.findall(r'\w+\s\w+$', tup[0])[0]
-        else:    
-            name = re.findall(r'\w+$', tup[0])[0]
-        teams_to_plot.append(name)
+    teams_to_plot = driver.get_teams_to_plot()
 
 
         #for each team, get runs scored and runs allowed on home and away
@@ -108,10 +99,15 @@ def main():
 
         i += 1
         
-        f.write(team + " Runs Scored At Home Per Game: " + str(runsScored[0]) + "\n")
-        f.write(team + " Runs Scored On Road Per Game: " + str(runsScored[1]) + "\n")
-        f.write(team + " Runs Allowed At Home Per Game: " + str(runsAllowed[0]) + "\n")
-        f.write(team + " Runs Allowed On Road Per Game: " + str(runsAllowed[1]) + "\n")
+        #round values to 2 decimal places
+        runsScored[0] = round(runsScored[0], 2)
+        runsScored[1] = round(runsScored[1], 2)
+        runsAllowed[0] = round(runsAllowed[0], 2)
+        runsAllowed[1] = round(runsAllowed[1], 2)
+        f.write(team + " Playoffs Runs Scored At Home Per Game: " + str(runsScored[0]) + "\n")
+        f.write(team + " Playoffs Runs Scored On Road Per Game: " + str(runsScored[1]) + "\n")
+        f.write(team + " Playoffs Runs Allowed At Home Per Game: " + str(runsAllowed[0]) + "\n")
+        f.write(team + " Playoffs Runs Allowed On Road Per Game: " + str(runsAllowed[1]) + "\n")
         f.write("\n")
         
     f.write("--- End Output for Plot 1 ---\n\n")
