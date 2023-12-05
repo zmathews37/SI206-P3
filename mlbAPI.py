@@ -10,10 +10,11 @@
 
 import requests
 import sqlite3
+import driver
 
 urlbaseMLB = "http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2017'"
-list_of_teams_and_years = [("San Francisco Giants", "2012"), ("Detroit Tigers", "2012"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
-players_to_add = 12
+list_of_teams_and_years = driver.list_of_teams_and_years
+players_to_add = driver.players_to_add
 
 def get_api_full_info(url, input_headers, input_params):
     response = requests.get(url, headers=input_headers, params=input_params)

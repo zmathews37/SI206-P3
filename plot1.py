@@ -7,11 +7,26 @@
 
 import MLBWebsite as mlbWeb
 import matplotlib.pyplot as plt
+import driver
+import re
 
-teams_to_add = ["Astros", "Dodgers", "Giants", "Tigers"]
+list_of_teams_and_years = driver.list_of_teams_and_years
 
-def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
-    #for each team, get runs scored and runs allowed on home and away
+def main():
+    connection, cursor = mlbWeb.get_connection()
+
+    teams_to_plot = []
+    for tup in list_of_teams_and_years:
+        #use regex to get team name last word
+        if "Red Sox" in tup[0] or "Blue Jays" in tup[0] or "White Sox" in tup[0]: #double names
+            #get last two words
+            name = re.findall(r'\w+\s\w+$', tup[0])[0]
+        else:    
+            name = re.findall(r'\w+$', tup[0])[0]
+        teams_to_plot.append(name)
+
+
+        #for each team, get runs scored and runs allowed on home and away
     cursor.execute('SELECT HomeTeam, HomeScore, AwayTeam, AwayScore FROM Scores')
     scores = cursor.fetchall()
 
@@ -24,7 +39,6 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
         if score[0] in teams_to_plot and score[0] not in teams:
             #home runs, home allowed, away runs, away allowed, games played
             teams[score[0]] = {"runsScoredHome": 0, "runsAllowedHome": 0, "runsScoredAway": 0, "runsAllowedAway": 0, "gamesPlayedHome": 0, "gamesPlayedAway": 0}
-
 
     for score in scores:
         if score[0] in teams:
@@ -66,7 +80,7 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
 
 
         axs[i, 0].bar([1, 2], runsScored, tick_label=["Home", "Away"])
-        axs[i, 0].set_title(team + " Runs Scored")
+        axs[i, 0].set_title(team + " Playoffs Runs Scored All Time")
         axs[i, 0].set_ylabel("Runs Scored Per Game")
 
         #set y axis max value to be slitghly above the highest value
@@ -81,7 +95,7 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
             
 
         axs[i, 1].bar([1, 2], runsAllowed, tick_label=["Home", "Away"])
-        axs[i, 1].set_title(team + " Runs Allowed")
+        axs[i, 1].set_title(team + " Playoffs Runs Allowed All Time")
         axs[i, 1].set_ylabel("Runs Allowed Per Game")
 
         #set y axis max value to be slitghly above the highest value
@@ -107,13 +121,7 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
 
 
 
-def main():
-    ret = mlbWeb.get_connection()
-    connection = ret[0]
-    cursor = ret[1]
 
-    #plot runs scored and runs allowed on same figure, different graph
-    plot_runs_scored_versus_allowed(cursor, teams_to_add)
     connection.close()
 
 
