@@ -13,24 +13,25 @@ import sqlite3
 
 urlbaseMLB = "http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2017'"
 list_of_teams_and_years = [("San Francisco Giants", "2012"), ("Detroit Tigers", "2012"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
+players_to_add = 12
 
 def get_api_full_info(url, input_headers, input_params):
     response = requests.get(url, headers=input_headers, params=input_params)
     return response.json()
 
-def print_team_info(filename, team_info):
-    f = open(filename, "w")
-    teams = team_info["team_all_season"]["queryResults"]["row"]
-    for team in teams:
-        f.write(str(team))
-        f.write("\n")
-    f.close()
-    return None
+# def print_team_info(filename, team_info):
+#     f = open(filename, "w")
+#     teams = team_info["team_all_season"]["queryResults"]["row"]
+#     for team in teams:
+#         f.write(str(team))
+#         f.write("\n")
+#     f.close()
+#     return None
 
-def handle_team_info():
-    response_team_info = get_api_full_info(urlbaseMLB, None, None)
-    print_team_info("teams.txt", response_team_info)
-    return None
+# def handle_team_info():
+#     response_team_info = get_api_full_info(urlbaseMLB, None, None)
+#     print_team_info("teams.txt", response_team_info)
+#     return None
 
 def get_roster(team_name, year):
     team_info = get_api_full_info(urlbaseMLB, None, None)
@@ -98,10 +99,8 @@ def add_player_to_Players_table(player_id, name, team_id, position, year):
     connection = ret[0]
     cursor = ret[1]
 
-    #change this so that the key is player_id
     player_id = str(player_id) + str(year)
-    player_id = int(player_id)
-    cursor.execute('CREATE TABLE IF NOT EXISTS Players (player_id INTEGER PRIMARY KEY, name TEXT, team_id INTEGER, position TEXT, year INTEGER)') 
+    player_id = int(player_id) 
     cursor.execute('INSERT INTO Players VALUES (?, ?, ?, ?, ?)', (player_id, name, team_id, position, year))
 
     connection.commit()
@@ -126,9 +125,6 @@ def add_player_to_Statistics_table(player_id, position, year, team_id):
         pitcher_strikeouts = stats["so"]
         games = stats["g"]
 
-
-    cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, year INTEGER, games INTEGER, homeruns INTEGER, ops REAL, hitter_strikeouts INTEGER, era REAL, whip REAL, pitcher_strikeouts INTEGER)')
-
     player_id = str(player_id) + str(year)
     player_id = int(player_id)
     if (position != "PITCHER"):
@@ -142,23 +138,61 @@ def add_player_to_Statistics_table(player_id, position, year, team_id):
 
 def put_full_roster_in_database(team_name, year):
     resp = get_roster(team_name, year)
+
+    iterator = 0
+
     for player in resp:
         player_id = player["player_id"]
         name = player["name_first_last"]
         team_id = player["team_id"]
         position = player["position_desig"]
+
+        #if player exists in database, don't add them
+        ret = get_connection()
+        connection = ret[0]
+        cursor = ret[1]
+        player_id_year = str(player_id) + str(year)
+        cursor.execute('SELECT * FROM Players WHERE player_id=?', (player_id_year,))
+        results = cursor.fetchall()
+        connection.close()
+
+        if len(results) > 0: #player already exists in database
+            continue
+        
+        #new player, add to database
+        iterator += 1
         add_player_to_Players_table(player_id, name, team_id, position, int(year))
         add_player_to_Statistics_table(player_id, position, year, team_id)
-    return None
+
+        #if we have added 12 players, stop
+        if iterator == players_to_add:
+            return False
+    return True
 
 def main():
     #algorithm:
     #1. get team roster from MLB API and add to database
     #2. for each player, get player info from MLB API and add to database
+    #3. repeat for each team
 
-    drop_tables()
+    ret  = get_connection()
+    connection = ret[0]
+    cursor = ret[1]
+
+    cursor.execute('CREATE TABLE IF NOT EXISTS Players (player_id INTEGER PRIMARY KEY, name TEXT, team_id INTEGER, position TEXT, year INTEGER)')
+    cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, year INTEGER, games INTEGER, homeruns INTEGER, ops REAL, hitter_strikeouts INTEGER, era REAL, whip REAL, pitcher_strikeouts INTEGER)')
+    connection.commit()
+    connection.close()
+
+    continue_fill = True
     for tup in list_of_teams_and_years:
-        put_full_roster_in_database(tup[0], tup[1])
+        continue_fill = put_full_roster_in_database(tup[0], tup[1])
+        
+        if not continue_fill:
+            return None
+        
+    print("Added All Players From All Specified Teams!")
+
 
 
 if __name__ == "__main__":
