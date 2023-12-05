@@ -13,7 +13,7 @@ import sqlite3
 
 urlbaseMLB = "http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2017'"
 list_of_teams_and_years = [("San Francisco Giants", "2012"), ("Detroit Tigers", "2012"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
-players_to_add = 12
+players_to_add = 10
 
 def get_api_full_info(url, input_headers, input_params):
     response = requests.get(url, headers=input_headers, params=input_params)
@@ -136,10 +136,8 @@ def add_player_to_Statistics_table(player_id, position, year, team_id):
     connection.close()
     return None
 
-def put_full_roster_in_database(team_name, year):
+def put_full_roster_in_database(team_name, year, iterator):
     resp = get_roster(team_name, year)
-
-    iterator = 0
 
     for player in resp:
         player_id = player["player_id"]
@@ -164,10 +162,10 @@ def put_full_roster_in_database(team_name, year):
         add_player_to_Players_table(player_id, name, team_id, position, int(year))
         add_player_to_Statistics_table(player_id, position, year, team_id)
 
-        #if we have added 12 players, stop
+        #if we have added enough players, stop
         if iterator == players_to_add:
-            return False
-    return True
+            return False, iterator
+    return True, iterator
 
 def main():
     #algorithm:
@@ -184,9 +182,9 @@ def main():
     connection.commit()
     connection.close()
 
-    continue_fill = True
+    iterator = 0
     for tup in list_of_teams_and_years:
-        continue_fill = put_full_roster_in_database(tup[0], tup[1])
+        continue_fill, iterator = put_full_roster_in_database(tup[0], tup[1], iterator)
         
         if not continue_fill:
             return None
