@@ -17,7 +17,7 @@ def main():
     teams_to_plot = driver.get_teams_to_plot()
 
 
-        #for each team, get runs scored and runs allowed on home and away
+    #for each team, get runs scored and runs allowed on home and away
     cursor.execute('SELECT HomeTeam, HomeScore, AwayTeam, AwayScore FROM Scores')
     scores = cursor.fetchall()
 

@@ -4,35 +4,104 @@ import MLBWebsite as mlbWeb
 
 def main():
     connection, cursor = mlbWeb.get_connection()
-
-    cursor.execute('SELECT HomeScore, AwayScore FROM Scores')
+    cursor.execute('SELECT Game, HomeScore, AwayScore FROM Scores')
     scores = cursor.fetchall()
-
-    homeMargin = []
-    awayMargin = []
-
-    for score in scores:
-        if score[0] > score[1]:
-            homeMargin.append(score[0] - score[1])
-        else:
-            awayMargin.append(score[1] - score[0])
-
-    homeMarginAvg = np.mean(homeMargin)
-    awayMarginAvg = np.mean(awayMargin)
 
     #create output file
     f = open("output.txt", "w")
-    f.write("Home Margin Average: " + str(homeMarginAvg) + "\n")
-    f.write("Away Margin Average: " + str(awayMarginAvg) + "\n")
-    f.write("\n")
-    f.close()
+    f.write("--- Output for Plot 4 ---\n\n")
 
-    #plot the margin of victory as side by side bar graph
-    plt.bar([1, 2], [homeMarginAvg, awayMarginAvg], tick_label=["Home Win", "Away Win"])
-    plt.title("Margin of Victory")
-    plt.ylabel("Average Margin of Victory (runs)")
+    runs_scored_home = {}
+    runs_scored_away = {}
+    average_home_runs_scored = {}
+    average_away_runs_scored = {}
+
+    for i in range(1, 8):
+        runs_scored_home[i] = []
+        runs_scored_away[i] = []
+        average_home_runs_scored[i] = 0
+        average_away_runs_scored[i] = 0
+
+    #get runs scored for each game of the series, 1, 2, 3, 4, 5, 6, 7
+    for score in scores:
+        game = score[0]
+        home_score = score[1]
+        away_score = score[2]
+
+        runs_scored_home[game].append(home_score)
+        runs_scored_away[game].append(away_score)
+
+    #get average runs scored for each game
+    for game in runs_scored_home:
+        average_home_runs_scored[game] = np.mean(runs_scored_home[game])
+        average_away_runs_scored[game] = np.mean(runs_scored_away[game])
+    
+    #plot the data side by side same bar chart, no subplots
+    #side by side not stacked
+    #each xtick contains both home and away
+    #xlabel should be between the two bars
+
+    fig, ax = plt.subplots()
+    fig.suptitle("Average Runs Scored Per Game")
+    fig.tight_layout(pad=3.0)
+
+    #set width of bar
+    barWidth = 0.25
+
+    #set height of bar
+    home = []
+    away = []
+    for i in range(1, 8):
+        home.append(average_home_runs_scored[i])
+        away.append(average_away_runs_scored[i])
+    
+    #set position of bar on x axis
+    r1 = np.arange(len(home))
+    r2 = [x + barWidth for x in r1]
+
+    #make the plot
+    plt.bar(r1, home, color="blue", width=barWidth, edgecolor="white", label="Home Runs Scored")
+    plt.bar(r2, away, color="orange", width=barWidth, edgecolor="white", label="Away Runs Scored")
+
+
+    #add xticks on the middle of the group bars
+    plt.xlabel("Game")
+    plt.ylabel("Runs Scored Per Game")
+    plt.xticks([r + barWidth/2 for r in range(len(home))], ["1", "2", "3", "4", "5", "6", "7"])
+
+    #create legend and show plot
+    plt.legend()
+
+    
+
+    #print the data
+    f.write("Average Runs Scored Per Game\n")
+    f.write("In Game 1's: \n")
+    f.write("Home: " + str(average_home_runs_scored[1]) + "\n")
+    f.write("Away: " + str(average_away_runs_scored[1]) + "\n\n")
+    f.write("In Game 2's: \n")
+    f.write("Home: " + str(average_home_runs_scored[2]) + "\n")
+    f.write("Away: " + str(average_away_runs_scored[2]) + "\n\n")
+    f.write("In Game 3's: \n")
+    f.write("Home: " + str(average_home_runs_scored[3]) + "\n")
+    f.write("Away: " + str(average_away_runs_scored[3]) + "\n\n")
+    f.write("In Game 4's: \n")
+    f.write("Home: " + str(average_home_runs_scored[4]) + "\n")
+    f.write("Away: " + str(average_away_runs_scored[4]) + "\n\n")
+    f.write("In Game 5's: \n")
+    f.write("Home: " + str(average_home_runs_scored[5]) + "\n")
+    f.write("Away: " + str(average_away_runs_scored[5]) + "\n\n")
+    f.write("In Game 6's: \n")
+    f.write("Home: " + str(average_home_runs_scored[6]) + "\n")
+    f.write("Away: " + str(average_away_runs_scored[6]) + "\n\n")
+    f.write("In Game 7's: \n")
+    f.write("Home: " + str(average_home_runs_scored[7]) + "\n")
+    f.write("Away: " + str(average_away_runs_scored[7]) + "\n\n")
+
+
+    f.write("--- End Output for Plot 4 ---\n\n")
+
     plt.show()
-
     connection.close()
 
     return None

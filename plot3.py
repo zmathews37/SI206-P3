@@ -1,6 +1,6 @@
 # This plot was generated using the mlbAPI data in Statistics table and Players table 
 # This is where join was used
-# Comparing the weighted averages of the two teams
+# Comparing the weighted averages of the playoff teams
 
 import matplotlib.pyplot as plt
 import mlbAPI as mlb
