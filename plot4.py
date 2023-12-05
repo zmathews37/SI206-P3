@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import MLBWebsite as mlb
+import MLBWebsite as mlbWeb
 
 def plot_margin_of_victory(connection, cursor):
     cursor.execute('SELECT HomeScore, AwayScore FROM Scores')
@@ -33,7 +33,7 @@ def plot_margin_of_victory(connection, cursor):
     return None
 
 def main():
-    connection, cursor = mlb.get_connection()
+    connection, cursor = mlbWeb.get_connection()
     plot_margin_of_victory(connection, cursor)
     connection.close()
     return None

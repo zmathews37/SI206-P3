@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import MLBWebsite as mlb
+import MLBWebsite as mlbWeb
 
 def plot_run_differentials(connection, cursor):
     cursor.execute('SELECT HomeTeam, AwayTeam, HomeScore, AwayScore FROM Scores')
@@ -34,7 +34,7 @@ def plot_run_differentials(connection, cursor):
     return None
 
 def main():
-    connection, cursor = mlb.get_connection()
+    connection, cursor = mlbWeb.get_connection()
     plot_run_differentials(connection, cursor)
     connection.close()
 

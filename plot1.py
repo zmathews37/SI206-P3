@@ -3,7 +3,9 @@
 # Margin of victory is displayed.
 # Runs scored and runs allowed are displayed on second graph.
 
-import MLBWebsite as mlb
+#This plot was generated using the Website
+
+import MLBWebsite as mlbWeb
 import matplotlib.pyplot as plt
 
 teams_to_add = ["Astros", "Dodgers", "Giants", "Tigers"]
@@ -95,7 +97,7 @@ def plot_runs_scored_versus_allowed(cursor, teams_to_plot):
 
 
 def main():
-    ret = mlb.get_connection()
+    ret = mlbWeb.get_connection()
     connection = ret[0]
     cursor = ret[1]
 
