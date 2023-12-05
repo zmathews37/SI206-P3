@@ -90,8 +90,6 @@ def main():
     #1. get a couple players from rapid API
     #2. add career stats to database
 
-    drop_tables()
-
     connection, cursor = get_connection()
     cursor.execute('CREATE TABLE IF NOT EXISTS CareerStats (PlayerID INTEGER PRIMARY KEY, Name text, position text, at_bats INTEGER, OPS REAL, homeruns INTEGER, innings_pitched REAL, ERA REAL, WHIP REAL)')
     connection.commit()
@@ -124,7 +122,7 @@ def main():
                 innings_pitched = player_stats["ip"]
                 era = player_stats["era"]
                 whip = player_stats["whip"]
-                put_player_in_career_stats_table(player_id_db, name, position, at_bats, ops, homerun, innings_pitched, era, whip)
+                put_player_in_career_stats_table(player_id_db, name, position, None, None, None, innings_pitched, era, whip)
                 
             else:
                 at_bats = player_stats["ab"]

@@ -1,7 +1,7 @@
 import re
 
 #for API calls
-players_to_add = 10
+players_to_add = 12
 list_of_teams_and_years = [("San Francisco Giants", "2010"), ("St. Louis Cardinals", "2011"), ("Boston Red Sox", "2012"), ("Houston Astros", "2017")]
 
 #for beautifulsoup calls
@@ -25,7 +25,7 @@ dates2021WS   = ["2021-10-26", "2021-10-27", "2021-10-29", "2021-10-30", "2021-1
 dates2022WS   = ["2022-10-28", "2022-10-29", "2022-11-01", "2022-11-02", "2022-11-03", "2022-11-05"]
 
 series_to_scrape = [dates2005WS, dates2006WS, dates2007WS, dates2008WS, dates2009WS, dates2010WS, dates2011WS, dates2012WS, dates2013WS, dates2014WS, dates2015WS, dates2016WS, dates2017WS, dates2018WS, dates2019WS, dates2020WS, dates2021WS, dates2022WS] 
-num_games_to_scrape = 240
+num_games_to_scrape = 24
 
 def get_teams_to_plot():
     teams_to_plot = []

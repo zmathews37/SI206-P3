@@ -155,8 +155,6 @@ def main():
     #2. for each player, get player info from MLB API and add to database
     #3. repeat for each team
 
-    drop_tables()
-
     ret  = get_connection()
     connection = ret[0]
     cursor = ret[1]

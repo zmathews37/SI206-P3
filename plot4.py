@@ -65,8 +65,8 @@ def main():
 
 
     #add xticks on the middle of the group bars
-    plt.xlabel("Game")
-    plt.ylabel("Runs Scored Per Game")
+    plt.xlabel("Game of World Series (1-7)")
+    plt.ylabel("Average Runs Scored Per Game")
     plt.xticks([r + barWidth/2 for r in range(len(home))], ["1", "2", "3", "4", "5", "6", "7"])
 
     #create legend and show plot
@@ -75,28 +75,29 @@ def main():
     
 
     #print the data
+    #use rounding
     f.write("Average Runs Scored Per Game\n")
     f.write("In Game 1's: \n")
-    f.write("Home: " + str(average_home_runs_scored[1]) + "\n")
-    f.write("Away: " + str(average_away_runs_scored[1]) + "\n\n")
+    f.write("Home: " + str(round(average_home_runs_scored[1], 2)) + "\n")
+    f.write("Away: " + str(round(average_away_runs_scored[1], 2)) + "\n\n")
     f.write("In Game 2's: \n")
-    f.write("Home: " + str(average_home_runs_scored[2]) + "\n")
-    f.write("Away: " + str(average_away_runs_scored[2]) + "\n\n")
+    f.write("Home: " + str(round(average_home_runs_scored[2], 2)) + "\n")
+    f.write("Away: " + str(round(average_away_runs_scored[2], 2)) + "\n\n")
     f.write("In Game 3's: \n")
-    f.write("Home: " + str(average_home_runs_scored[3]) + "\n")
-    f.write("Away: " + str(average_away_runs_scored[3]) + "\n\n")
+    f.write("Home: " + str(round(average_home_runs_scored[3], 2)) + "\n")
+    f.write("Away: " + str(round(average_away_runs_scored[3], 2)) + "\n\n")
     f.write("In Game 4's: \n")
-    f.write("Home: " + str(average_home_runs_scored[4]) + "\n")
-    f.write("Away: " + str(average_away_runs_scored[4]) + "\n\n")
+    f.write("Home: " + str(round(average_home_runs_scored[4], 2)) + "\n")
+    f.write("Away: " + str(round(average_away_runs_scored[4], 2)) + "\n\n")
     f.write("In Game 5's: \n")
-    f.write("Home: " + str(average_home_runs_scored[5]) + "\n")
-    f.write("Away: " + str(average_away_runs_scored[5]) + "\n\n")
+    f.write("Home: " + str(round(average_home_runs_scored[5], 2)) + "\n")
+    f.write("Away: " + str(round(average_away_runs_scored[5], 2)) + "\n\n")
     f.write("In Game 6's: \n")
-    f.write("Home: " + str(average_home_runs_scored[6]) + "\n")
-    f.write("Away: " + str(average_away_runs_scored[6]) + "\n\n")
+    f.write("Home: " + str(round(average_home_runs_scored[6], 2)) + "\n")
+    f.write("Away: " + str(round(average_away_runs_scored[6], 2)) + "\n\n")
     f.write("In Game 7's: \n")
-    f.write("Home: " + str(average_home_runs_scored[7]) + "\n")
-    f.write("Away: " + str(average_away_runs_scored[7]) + "\n\n")
+    f.write("Home: " + str(round(average_home_runs_scored[7], 2)) + "\n")
+    f.write("Away: " + str(round(average_away_runs_scored[7], 2)) + "\n\n")
 
 
     f.write("--- End Output for Plot 4 ---\n\n")
