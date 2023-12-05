@@ -2,8 +2,10 @@ import matplotlib.pyplot as plt
 import MLBWebsite as mlbWeb
 
 def plot_run_differentials(connection, cursor):
-    cursor.execute('SELECT HomeTeam, AwayTeam, HomeScore, AwayScore FROM Scores')
+    cursor.execute('SELECT HomeTeam, AwayTeam, HomeScore, AwayScore, year FROM Scores')
     scores = cursor.fetchall()
+    legend = []
+    d = {}
 
     runDifferentials = {}
 
@@ -21,14 +23,24 @@ def plot_run_differentials(connection, cursor):
         runDifferentials[home_team].append(run_diff)
         runDifferentials[away_team].append(-run_diff)  # Negative for away teams
 
+        if home_team not in d:
+            d[home_team] = []
+            legend.append(home_team + " " + str(score[4]))
+
+
     # Plot histogram for run differentials
     plt.figure(figsize=(12, 6))
-    plt.hist(runDifferentials.values(), bins=20, alpha=0.7, label=runDifferentials.keys(), edgecolor='black', linewidth=1.2)
+    plt.hist(runDifferentials.values(), bins=20, alpha=0.7, edgecolor='black', linewidth=1.2)
     plt.title("Run Differentials Distribution for Each Team")
     plt.xlabel("Run Differential (Runs Scored - Runs Allowed)")
     plt.ylabel("Frequency")
     plt.legend()
     plt.grid(True)
+
+
+    #add legend
+    plt.legend(legend)
+
     plt.show()
 
     return None
