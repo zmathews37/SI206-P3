@@ -21,7 +21,7 @@ headers = {
 
 # list_of_teams_and_years = [("San Francisco Giants", "2012"), ("Detroit Tigers", "2012"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
 list_of_teams_and_years = [("Houston Astros", "2017")]
-players_to_add = 24
+players_to_add = 1000
 
 ### FUNCTIONS ###
 
@@ -76,11 +76,11 @@ def get_connection():
     cursor = connection.cursor()
     return connection, cursor
 
-def put_player_in_career_stats_table(player_id, player_name, ops, homerun, era, whip, teams_played_for):
+def put_player_in_career_stats_table(player_id, name, position, at_bats, ops, homeruns, innings_pitched, era, whip):
     ret = get_connection()
     connection = ret[0]
     cursor = ret[1]
-    cursor.execute('INSERT INTO CareerStats VALUES (?, ?, ?, ?, ?, ?, ?)', (player_id, player_name, ops, homerun, era, whip, teams_played_for))
+    cursor.execute('INSERT INTO CareerStats VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, name, position, at_bats, ops, homeruns, innings_pitched, era, whip))
     connection.commit()
     connection.close()
     return None
@@ -89,10 +89,11 @@ def main():
     #Algorithm:
     #1. get a couple players from rapid API
     #2. add career stats to database
-    #3. add number of teams played for to database
+
+    drop_tables()
 
     connection, cursor = get_connection()
-    cursor.execute('CREATE TABLE IF NOT EXISTS CareerStats (PlayerID INTEGER PRIMARY KEY, Name text, OPS REAL, Homerun INTEGER, ERA REAL, WHIP REAL, teams_played_for INTEGER)')
+    cursor.execute('CREATE TABLE IF NOT EXISTS CareerStats (PlayerID INTEGER PRIMARY KEY, Name text, position text, at_bats INTEGER, OPS REAL, homeruns INTEGER, innings_pitched REAL, ERA REAL, WHIP REAL)')
     connection.commit()
     connection.close()
     
@@ -116,17 +117,20 @@ def main():
             if len(results) > 0:
                 continue
 
-            player_stats = get_career_stats(player["player_id"], player["position_desig"] == "PITCHER")
-            teams_played_for = player_stats["team_count"]
+            position = player["primary_position"]
+            player_stats = get_career_stats(player["player_id"], position == "P")
 
-            if player["position_desig"] == "PITCHER":
+            if position == "P":
+                innings_pitched = player_stats["ip"]
                 era = player_stats["era"]
                 whip = player_stats["whip"]
-                put_player_in_career_stats_table(player_id_db, name, None, None, era, whip, teams_played_for)
+                put_player_in_career_stats_table(player_id_db, name, position, at_bats, ops, homerun, innings_pitched, era, whip)
+                
             else:
+                at_bats = player_stats["ab"]
                 ops = player_stats["ops"]
                 homerun = player_stats["hr"]
-                put_player_in_career_stats_table(player_id_db, name, ops, homerun, None, None, teams_played_for)
+                put_player_in_career_stats_table(player_id_db, name, position, at_bats, ops, homerun, None, None, None)
 
             iterator += 1
 

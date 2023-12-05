@@ -13,7 +13,7 @@ import sqlite3
 
 urlbaseMLB = "http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2017'"
 list_of_teams_and_years = [("San Francisco Giants", "2012"), ("Detroit Tigers", "2012"), ("Houston Astros", "2017"), ("Los Angeles Dodgers", "2017")]
-players_to_add = 1000
+players_to_add = 12
 
 def get_api_full_info(url, input_headers, input_params):
     response = requests.get(url, headers=input_headers, params=input_params)
@@ -98,22 +98,20 @@ def add_player_to_Statistics_table(player_id, position, year, team_id):
     stats = get_player_statistics(player_id, position, year, team_id)
 
     if (position != "P"):
+        at_bats = stats["ab"]
         homeruns = stats["hr"]
         ops  = stats["ops"]
-        hitter_strikeouts = stats["so"]
-        games = stats["g"]
     else:
+        innings_pitched = stats["ip"]
         era = stats["era"]
         whip = stats["whip"]
-        pitcher_strikeouts = stats["so"]
-        games = stats["g"]
 
     player_id = str(player_id) + str(year)
     player_id = int(player_id)
     if (position != "P"):
-        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, year, games, homeruns, ops, hitter_strikeouts, None, None, None))
+        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (player_id, year, at_bats, ops, homeruns, None, None, None))
     else:
-        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (player_id, year, games, None, None, None, era, whip, pitcher_strikeouts))
+        cursor.execute('INSERT INTO Statistics VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (player_id, year, None, None, None, innings_pitched, era, whip))
 
     connection.commit()
     connection.close()
@@ -156,12 +154,14 @@ def main():
     #2. for each player, get player info from MLB API and add to database
     #3. repeat for each team
 
+    drop_tables()
+
     ret  = get_connection()
     connection = ret[0]
     cursor = ret[1]
 
     cursor.execute('CREATE TABLE IF NOT EXISTS Players (player_id INTEGER PRIMARY KEY, name TEXT, team_id INTEGER, position TEXT, year INTEGER)')
-    cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, year INTEGER, games INTEGER, homeruns INTEGER, ops REAL, hitter_strikeouts INTEGER, era REAL, whip REAL, pitcher_strikeouts INTEGER)')
+    cursor.execute('CREATE TABLE IF NOT EXISTS Statistics (player_id INTEGER PRIMARY KEY, year INTEGER, at_bats INTEGER, ops REAL, homeruns INTEGER, innings_pitched REAL, era REAL, whip REAL)')
     connection.commit()
     connection.close()
 
