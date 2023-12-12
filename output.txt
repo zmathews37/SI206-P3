@@ -1,3 +1,74 @@
+--- Output for Plot 1 ---
+
+Astros Playoffs Runs Scored At Home Per Game: 3.93
+Astros Playoffs Runs Scored On Road Per Game: 4.07
+Astros Playoffs Runs Allowed At Home Per Game: 5.53
+Astros Playoffs Runs Allowed On Road Per Game: 3.13
+
+Cardinals Playoffs Runs Scored At Home Per Game: 4.2
+Cardinals Playoffs Runs Scored On Road Per Game: 4.0
+Cardinals Playoffs Runs Allowed At Home Per Game: 3.2
+Cardinals Playoffs Runs Allowed On Road Per Game: 4.5
+
+Red Sox Playoffs Runs Scored At Home Per Game: 6.14
+Red Sox Playoffs Runs Scored On Road Per Game: 5.12
+Red Sox Playoffs Runs Allowed At Home Per Game: 2.0
+Red Sox Playoffs Runs Allowed On Road Per Game: 3.25
+
+Giants Playoffs Runs Scored At Home Per Game: 6.86
+Giants Playoffs Runs Scored On Road Per Game: 3.0
+Giants Playoffs Runs Allowed At Home Per Game: 2.43
+Giants Playoffs Runs Allowed On Road Per Game: 3.11
+
+--- End Output for Plot 1 ---
+
+--- Output for Plot 2 ---
+
+Weighted Average of Home Runs and OPS for Each Position
+
+Position	Home Runs	                            OPS
+C	        32.72 homeruns per 1000 at bats	        0.736
+1B	        45.66 homeruns per 1000 at bats	        0.851
+2B	        17.62 homeruns per 1000 at bats	        0.738
+3B	        36.3 homeruns per 1000 at bats	        0.792
+SS	        22.72 homeruns per 1000 at bats	        0.731
+LF	        31.44 homeruns per 1000 at bats	        0.766
+CF	        27.61 homeruns per 1000 at bats	        0.743
+RF	        34.28 homeruns per 1000 at bats	        0.751
+DH	        53.02 homeruns per 1000 at bats	        0.881
+
+--- End Output for Plot 2 ---
+
+--- Output for Plot 3 ---
+
+Comparing Team Stats of World Series teams
+
+OPS
+San Francisco Giants: 0.756
+St. Louis Cardinals: 0.788
+Boston Red Sox: 0.731
+Houston Astros: 0.826
+
+Home Runs
+San Francisco Giants: 162
+St. Louis Cardinals: 160
+Boston Red Sox: 165
+Houston Astros: 238
+
+ERA
+San Francisco Giants: 3.36
+St. Louis Cardinals: 3.77
+Boston Red Sox: 4.7
+Houston Astros: 4.1
+
+WHIP
+San Francisco Giants: 1.27
+St. Louis Cardinals: 1.31
+Boston Red Sox: 1.37
+Houston Astros: 1.27
+
+--- End Output for Plot 3 ---
+
 --- Output for Plot 4 ---
 
 Average Runs Scored Per Game

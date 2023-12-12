@@ -1,7 +1,6 @@
 # Description: This file is used to plot the home and away scores to see if there is a correlation of home field advantage.
 # Graph is plotted using matplotlib.
-# Margin of victory is displayed.
-# Runs scored and runs allowed are displayed on second graph.
+# Runs scored and runs allowed are displayed.
 
 #This plot was generated using the Website
 

@@ -8,7 +8,7 @@ def main():
     scores = cursor.fetchall()
 
     #create output file
-    f = open("output.txt", "w")
+    f = open("output.txt", "a")
     f.write("--- Output for Plot 4 ---\n\n")
 
     runs_scored_home = {}
